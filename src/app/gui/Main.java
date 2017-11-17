@@ -50,6 +50,8 @@ public class Main extends javax.swing.JFrame {
         sequential_list_title = new javax.swing.JButton();
         twice_linked_list_icon = new javax.swing.JButton();
         twice_linked_list = new javax.swing.JButton();
+        tree_title = new javax.swing.JButton();
+        tree_icon = new javax.swing.JButton();
         workspace = new javax.swing.JDesktopPane();
         panel = new javax.swing.JPanel();
 
@@ -119,7 +121,7 @@ public class Main extends javax.swing.JFrame {
         queue_title.setBackground(new java.awt.Color(163, 73, 164));
         queue_title.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         queue_title.setForeground(new java.awt.Color(255, 255, 255));
-        queue_title.setText("Filas");
+        queue_title.setText("Fila");
         queue_title.setContentAreaFilled(false);
         queue_title.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         queue_title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -199,14 +201,31 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        tree_title.setBackground(new java.awt.Color(163, 73, 164));
+        tree_title.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        tree_title.setForeground(new java.awt.Color(255, 255, 255));
+        tree_title.setText("Árvore");
+        tree_title.setContentAreaFilled(false);
+        tree_title.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tree_title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tree_title.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tree_titleActionPerformed(evt);
+            }
+        });
+
+        tree_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/tree_icon.png"))); // NOI18N
+        tree_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tree_icon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tree_iconActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout main_menuLayout = new javax.swing.GroupLayout(main_menu);
         main_menu.setLayout(main_menuLayout);
         main_menuLayout.setHorizontalGroup(
             main_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_menuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(separator_1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
             .addGroup(main_menuLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(main_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,32 +236,38 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(main_menuLayout.createSequentialGroup()
                         .addGroup(main_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(main_menuLayout.createSequentialGroup()
+                                .addComponent(tree_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tree_title))
+                            .addGroup(main_menuLayout.createSequentialGroup()
+                                .addComponent(exit_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(exit_title))
+                            .addGroup(main_menuLayout.createSequentialGroup()
                                 .addComponent(twice_linked_list_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(twice_linked_list))
-                            .addGroup(main_menuLayout.createSequentialGroup()
-                                .addComponent(sequential_list_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sequential_list_title))
                             .addGroup(main_menuLayout.createSequentialGroup()
                                 .addComponent(queue_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queue_title))
                             .addComponent(separator_2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(main_menuLayout.createSequentialGroup()
-                                .addComponent(linked_list_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(linked_list_title))
-                            .addGroup(main_menuLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(exit_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(exit_title))
-                            .addGroup(main_menuLayout.createSequentialGroup()
                                 .addComponent(stack_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(stack_title)))
-                        .addGap(0, 34, Short.MAX_VALUE)))
+                                .addComponent(stack_title))
+                            .addGroup(main_menuLayout.createSequentialGroup()
+                                .addComponent(sequential_list_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sequential_list_title))
+                            .addGroup(main_menuLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(separator_1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(main_menuLayout.createSequentialGroup()
+                                .addComponent(linked_list_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(linked_list_title)))
+                        .addGap(0, 32, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         main_menuLayout.setVerticalGroup(
@@ -255,9 +280,9 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(main_menuLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(main_icon)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(separator_1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(main_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(linked_list_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(main_menuLayout.createSequentialGroup()
@@ -269,6 +294,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_menuLayout.createSequentialGroup()
                         .addComponent(sequential_list_title, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
+                .addGap(18, 18, 18)
                 .addGroup(main_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(twice_linked_list_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(main_menuLayout.createSequentialGroup()
@@ -281,18 +307,23 @@ public class Main extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(stack_title, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)))
+                .addGap(18, 18, 18)
                 .addGroup(main_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(queue_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(queue_title))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
+                .addGroup(main_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tree_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tree_title))
+                .addGap(18, 18, 18)
                 .addComponent(separator_2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(main_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(exit_icon)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_menuLayout.createSequentialGroup()
                         .addComponent(exit_title)
                         .addGap(10, 10, 10)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
         workspace.setBackground(new java.awt.Color(255, 255, 255));
@@ -342,7 +373,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void open_linked_list() {
-        linked_list list = new linked_list();
+        Linked_list list = new Linked_list();
         list.setSize(898, 720);
         workspace.removeAll();
         workspace.revalidate();
@@ -352,7 +383,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void open_twice_linked_list() {
-        twice_linked_list list = new twice_linked_list();
+        Twice_linked_list list = new Twice_linked_list();
         list.setSize(898, 720);
         workspace.removeAll();
         workspace.revalidate();
@@ -362,7 +393,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void open_sequential_list() {
-        sequential_list list = new sequential_list();
+        Sequential_list list = new Sequential_list();
         list.setSize(898, 720);
         workspace.removeAll();
         workspace.revalidate();
@@ -372,7 +403,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void open_stack() {
-        stack list = new stack();
+        Stack list = new Stack();
         list.setSize(898, 720);
         workspace.removeAll();
         workspace.revalidate();
@@ -382,7 +413,17 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void open_queue() {
-        queue list = new queue();
+        Queue list = new Queue();
+        list.setSize(898, 720);
+        workspace.removeAll();
+        workspace.revalidate();
+        workspace.repaint();
+        workspace.add(list);
+        list.setVisible(true);
+    }
+    
+    public void open_tree(){
+        Tree list = new Tree();
         list.setSize(898, 720);
         workspace.removeAll();
         workspace.revalidate();
@@ -439,6 +480,14 @@ public class Main extends javax.swing.JFrame {
         open_twice_linked_list();
     }//GEN-LAST:event_twice_linked_listActionPerformed
 
+    private void tree_titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tree_titleActionPerformed
+        open_tree();
+    }//GEN-LAST:event_tree_titleActionPerformed
+
+    private void tree_iconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tree_iconActionPerformed
+        open_tree();
+    }//GEN-LAST:event_tree_iconActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -491,6 +540,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton stack_icon;
     private javax.swing.JButton stack_title;
     private javax.swing.JLabel title;
+    private javax.swing.JButton tree_icon;
+    private javax.swing.JButton tree_title;
     private javax.swing.JButton twice_linked_list;
     private javax.swing.JButton twice_linked_list_icon;
     protected static javax.swing.JDesktopPane workspace;

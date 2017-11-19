@@ -7,7 +7,6 @@ package app.gui;
 
 import app.nodes.TreeNode;
 import java.awt.Color;
-import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,7 +23,6 @@ public class Tree extends javax.swing.JPanel {
      */
     public Tree() {
         initComponents();
-        this.g = workspace.getGraphics();
     }
 
     /**
@@ -72,7 +70,7 @@ public class Tree extends javax.swing.JPanel {
 
         bar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/bar.png"))); // NOI18N
 
-        preorder.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        preorder.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         preorder.setForeground(new java.awt.Color(163, 73, 164));
         preorder.setText("N");
 
@@ -88,11 +86,11 @@ public class Tree extends javax.swing.JPanel {
         posorder_text.setForeground(new java.awt.Color(163, 73, 164));
         posorder_text.setText("Pós_Ordem:");
 
-        inorder.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        inorder.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         inorder.setForeground(new java.awt.Color(163, 73, 164));
         inorder.setText("N");
 
-        posorder.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        posorder.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         posorder.setForeground(new java.awt.Color(163, 73, 164));
         posorder.setText("N");
 
@@ -112,7 +110,7 @@ public class Tree extends javax.swing.JPanel {
                         .addComponent(value_area, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(separator_1)
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
                         .addGroup(main_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(main_panelLayout.createSequentialGroup()
                                 .addComponent(preorder_text)
@@ -157,9 +155,9 @@ public class Tree extends javax.swing.JPanel {
                                 .addGroup(main_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(posorder_text)
                                     .addComponent(posorder))))))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(543, Short.MAX_VALUE))
+                .addContainerGap(568, Short.MAX_VALUE))
         );
 
         workspace.setLayer(main_panel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -193,13 +191,42 @@ public class Tree extends javax.swing.JPanel {
             return;
         }
         insert(value_area.getText());
+        update_orders();
     }//GEN-LAST:event_add_buttonActionPerformed
+
+    public void update_orders() {
+        String s = "";
+        preorder.setText(preorder(s, root));
+        inorder.setText(inorder(s, root));
+        posorder.setText(posorder(s, root));
+    }
+
+    public String preorder(String string, TreeNode node) {
+        if (node == null) {
+            return "";
+        }
+        return preorder(string, node.getLeft()) + " " + preorder(string, node.getRight()) + " " + node.getValue();
+    }
+    
+    public String inorder(String string, TreeNode node) {
+        if (node == null) {
+            return "";
+        }
+        return inorder(string, node.getLeft()) + " " + node.getValue() + " " + inorder(string, node.getRight());
+    }
+    
+    public String posorder(String string, TreeNode node) {
+        if (node == null) {
+            return "";
+        }
+        return node.getValue() + " " + posorder(string, node.getLeft()) + " " + posorder(string, node.getRight());
+    }
 
     public void restore() {
         X = 435;
         Y = 170;
         scale = 1.0;
-        deep = 1;
+        deep = 0;
     }
 
     public boolean verify_limits() {
@@ -218,14 +245,47 @@ public class Tree extends javax.swing.JPanel {
                 arrow_panel.setBackground(Color.white);
                 if (side) {
                     arrow.setIcon(new ImageIcon(getClass().getResource(ARROW_1)));
-                    arrow_panel.setLocation((int) (X * scale) - 150, (int) (Y / scale) + 30);
+                    arrow_panel.setLocation(X + 50, Y - 50);
                 } else {
                     arrow.setIcon(new ImageIcon(getClass().getResource(ARROW_1_BACK)));
-                    arrow_panel.setLocation((int) (X * scale) + 50, (int) (Y / scale) + 30);
+                    arrow_panel.setLocation(X - 150, Y - 50);
                 }
                 arrow_panel.add(arrow);
                 workspace.add(arrow_panel);
                 arrow_panel.setVisible(true);
+                break;
+            case 2:
+                arrow.setSize(50, 105);
+                arrow.setLocation(0, 0);
+                arrow_panel.setSize(50, 110);
+                arrow_panel.setBackground(Color.white);
+                if (side) {
+                    arrow.setIcon(new ImageIcon(getClass().getResource(ARROW_2)));
+                    arrow_panel.setLocation(X + 50, Y - 105);
+                } else {
+                    arrow.setIcon(new ImageIcon(getClass().getResource(ARROW_2_BACK)));
+                    arrow_panel.setLocation(X - 50, Y - 105);
+                }
+                arrow_panel.add(arrow);
+                workspace.add(arrow_panel);
+                arrow_panel.setVisible(true);
+                break;
+            case 3:
+                arrow.setSize(25, 160);
+                arrow.setLocation(0, 0);
+                arrow_panel.setSize(25, 165);
+                arrow_panel.setBackground(Color.white);
+                if (side) {
+                    arrow.setIcon(new ImageIcon(getClass().getResource(ARROW_3)));
+                    arrow_panel.setLocation(X + 45, Y - 165);
+                } else {
+                    arrow.setIcon(new ImageIcon(getClass().getResource(ARROW_3_BACK)));
+                    arrow_panel.setLocation(X - 20, Y - 165);
+                }
+                arrow_panel.add(arrow);
+                workspace.add(arrow_panel);
+                arrow_panel.setVisible(true);
+                break;
         }
 
     }
@@ -249,12 +309,14 @@ public class Tree extends javax.swing.JPanel {
                 Y += 80;
                 scale += 0.75;
                 side = true;
+                deep++;
                 root.setLeft(insert_recursive(root.getLeft(), value));
             } else if (Integer.parseInt(value) > Integer.parseInt(root.getValue())) {
                 X += 200 / scale;
                 Y += 80;
                 scale += 0.75;
                 side = false;
+                deep++;
                 root.setRight(insert_recursive(root.getRight(), value));
             } else if (Integer.parseInt(value) == Integer.parseInt(root.getValue())) {
                 JOptionPane.showMessageDialog(null, "Valor já adicionado!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -271,8 +333,8 @@ public class Tree extends javax.swing.JPanel {
                 node.setLocation(X, Y);
                 node.setVisible(true);
                 workspace.add(node);
-                restore();
                 link_nodes();
+                restore();
                 return node;
             } else {
                 JOptionPane.showMessageDialog(null, "Limite da tela atingido!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -301,16 +363,19 @@ public class Tree extends javax.swing.JPanel {
         return node;
     }
 
-    private Graphics g;
     private double scale = 1.0;
     private int X = 435;
     private int Y = 170;
-    private int deep = 1;
+    private int deep = 0;
     private boolean side;
     private TreeNode root;
 
     private static final String ARROW_1 = "/app/images/tree_arrow_1.png";
     private static final String ARROW_1_BACK = "/app/images/tree_arrow_1_back.png";
+    private static final String ARROW_2 = "/app/images/tree_arrow_2.png";
+    private static final String ARROW_2_BACK = "/app/images/tree_arrow_2_back.png";
+    private static final String ARROW_3 = "/app/images/tree_arrow_3.png";
+    private static final String ARROW_3_BACK = "/app/images/tree_arrow_3_back.png";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_button;
